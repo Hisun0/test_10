@@ -24,9 +24,10 @@ const fifthTask = (params) => {
   const nums = params.map((el) => Number(el));
   const [ know, amount, need, questions ] = nums;
   
+  const noNeedAnswers = questions - need;
   const goodQuestions = know;
   const badQuestions = amount - know;
-  const result = (formula(goodQuestions, need) * formula(badQuestions, 1) + formula(goodQuestions, questions)) / formula(amount, questions)
+  const result = (formula(goodQuestions, need) * formula(badQuestions, noNeedAnswers) + formula(goodQuestions, questions)) / formula(amount, questions)
   return result.toFixed(2);
 };
 
