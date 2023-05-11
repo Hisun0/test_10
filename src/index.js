@@ -22,13 +22,20 @@ const formula = (amount, question) => {
 
 const fifthTask = (params) => {
   const nums = params.map((el) => Number(el));
-  const [ know, amount, need, questions ] = nums;
+  const [ goodQuestions, amount, need, questions ] = nums;
   
   const noNeedAnswers = questions - need;
-  const goodQuestions = know;
-  const badQuestions = amount - know;
-  const result = (formula(goodQuestions, need) * formula(badQuestions, noNeedAnswers) + formula(goodQuestions, questions)) / formula(amount, questions)
-  return result.toFixed(2);
+  const badQuestions = amount - goodQuestions;
+  
+  const totalVariants = formula(amount, questions);
+  const firstEvent = (formula(goodQuestions, need) * formula(badQuestions, noNeedAnswers)) / totalVariants;
+  const secondEvent = (formula(goodQuestions, need + 1) * formula(badQuestions, noNeedAnswers - 1)) / totalVariants;
+  const thirdEvent = (formula(goodQuestions, questions)) / totalVariants;
+
+  if (noNeedAnswers > 1) {
+    return (firstEvent + secondEvent + thirdEvent).toFixed(2);
+  }
+  return (firstEvent + secondEvent).toFixed(2);
 };
 
 const diceTask = (num) => {
