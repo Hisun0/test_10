@@ -1,6 +1,34 @@
 const getTriangleArea = (leg) => 0.5 * leg * leg;
 
-const fifthTask = () => 0.21;
+const factorial = (n) => {
+  if (n === 0) {
+    return 1;
+  }
+
+  const iter = (counter, acc) => {
+    if (counter === 1) {
+      return acc;
+    }
+    return iter(counter - 1, counter * acc);
+  };
+
+  return iter(n, 1);
+};
+
+const formula = (amount, question) => {
+  const numMinusQuestion = amount - question;
+  return Math.round(factorial(amount) / (factorial(numMinusQuestion) * factorial(question)));
+};
+
+const fifthTask = (params) => {
+  const nums = params.map((el) => Number(el));
+  const [ know, amount, need, questions ] = nums;
+  
+  const goodQuestions = know;
+  const badQuestions = amount - know;
+  const result = (formula(goodQuestions, need) * formula(badQuestions, 1) + formula(goodQuestions, questions)) / formula(amount, questions)
+  return result.toFixed(2);
+};
 
 const diceTask = (num) => {
   const diceNums = [

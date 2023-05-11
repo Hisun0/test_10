@@ -16,8 +16,8 @@ const start = () => {
   console.log(timeTask(time));
   const box = (question('Введи количество красных и синих бантиков: ')).split(' ');
   console.log(boxTask(box));
-  console.log('Последнее задание: ');
-  console.log(fifthTask());
+  const fifth = (question(`Введи все числа из задания по порядку\nПример: 12 40 2 3\n`)).split(' ');
+  console.log(fifthTask(fifth));
 };
 
 console.log(start());
